@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Router, Link } from "@reach/router";
+import Feed from './components/Feed';
+
+const Nav = ({ children }) => (
+  <div className="wrapper">
+    <nav>
+      <ul className="top-menu">
+        <li className="top-menu-link">
+          <Link to="/">Feed</Link>
+        </li>
+        <li className="top-menu-link">
+          <Link to="best">Best Stories</Link>
+        </li>
+        <li className="top-menu-link">
+          <Link to="top">Top Stories</Link>
+        </li>
+      </ul>
+    </nav>
+    {children}
+  </div>
+);
+
+const BestStories = () => <div>Best stories</div>;
+
+const TopStories = () => <div>Top stories</div>;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Nav path="/">
+        <Feed path="/" />
+        <BestStories path="best" />
+        <TopStories path="top" />
+      </Nav>
+    </Router>
   );
 }
 
