@@ -10,8 +10,8 @@ function App() {
     <Router basepath="/hacker-news-reader" >
       <Nav path="/">
         <MainFeed path="/*" />
-        <Story path="/story/:itemId" />
-        <UserPage path="/user/:userId" />
+        <Story path="story/:itemId" />
+        <UserPage path="user/:userId" />
       </Nav>
     </Router>
   );

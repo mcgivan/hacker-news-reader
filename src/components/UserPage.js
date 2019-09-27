@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { fetchUser } from "../utils/api";
 import useStory from "../hooks/useStory";
 import ItemsList from "./ItemsList";
@@ -8,6 +8,8 @@ const getMarkup = data => ({
   __html: data,
 });
 
+window.handler = navigate;
+
 const TitleView = ({ id }) => {
   const [data, fetchingError] = useStory(id);
 
@@ -15,13 +17,15 @@ const TitleView = ({ id }) => {
     return null;
   }
 
-  if(!data) {
+  if (!data) {
     return null;
   }
 
   return (
     <div>
-      <Link to={`./story/${data.id}`}>{data.title}</Link>
+      <Link to={`../../story/${id}`}>
+        {data.title}
+      </Link>
     </div>
   );
 };
