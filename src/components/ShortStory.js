@@ -34,11 +34,11 @@ function ShortItem({ id }) {
   return (
     <div className="short-story row">
       <h4 className="story-title">
-        <Link to={`/story/${data.id}`}>{data.title}</Link>
+        <Link to={`./story/${data.id}`}>{data.title}</Link>
       </h4>
       <div className="story-short-bottom">
         <span className="story-author">
-          by <Link to={`/user/${data.by}`}>{data.by}</Link>
+          by <Link to={`./user/${data.by}`}>{data.by}</Link>
         </span>
         <span className="story-date">{getDateString(data.time)}</span>
       </div>

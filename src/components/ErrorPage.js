@@ -7,7 +7,7 @@ const ErrorPage = () => {
       <h1 style={{textAlign: 'center'}}>404</h1>
       <p>Sorry! Wrong url...</p>
       <div>
-        <Link to="/">Home</Link>
+        <Link to="./">Home</Link>
       </div>
     </div>
   );

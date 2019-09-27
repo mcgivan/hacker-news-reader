@@ -21,7 +21,7 @@ const TitleView = ({ id }) => {
 
   return (
     <div>
-      <Link to={`/story/${data.id}`}>{data.title}</Link>
+      <Link to={`./story/${data.id}`}>{data.title}</Link>
     </div>
   );
 };

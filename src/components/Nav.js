@@ -10,32 +10,32 @@ export default function Nav({ children }) {
       <nav className="nav-wrapper">
         <ul className="top-menu">
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/">
+            <Link getProps={getCurrentClassName} to="./">
               New Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/best">
+            <Link getProps={getCurrentClassName} to="./best">
               Best Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/top">
+            <Link getProps={getCurrentClassName} to="./top">
               Top Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/ask">
+            <Link getProps={getCurrentClassName} to="./ask">
               Ask Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/job">
+            <Link getProps={getCurrentClassName} to="./job">
               Job Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="/show">
+            <Link getProps={getCurrentClassName} to="./show">
               Show Stories
             </Link>
           </li>
