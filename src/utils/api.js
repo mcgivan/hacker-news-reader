@@ -1,4 +1,4 @@
-import { getData, setData } from "./storage";
+import { storeData } from "./storage";
 
 const BASE_URI = "https://hacker-news.firebaseio.com/v0";
 const itemUrl = itemId => `${BASE_URI}/item/${itemId}.json`;
@@ -9,25 +9,9 @@ const newStoriesUrl = () => `${BASE_URI}/newstories.json`;
 const askStoriesUrl = () => `${BASE_URI}/askstories.json`;
 const jobStoriesUrl = () => `${BASE_URI}/jobstories.json`;
 const showStoriesUrl = () => `${BASE_URI}/showstories.json`;
-const keyRegExp = /.*(?:\/(.+))\.json/;
 
-const getStorageKey = url => {
-  const [, matchedKey] = url.match(keyRegExp);
-  if (matchedKey) {
-    return matchedKey;
-  }
-  return null;
-};
-
-const cachedFetch = (url, options = {}) => {
-  const key = getStorageKey(url);
-  const cachedData = getData(key);
-  if (cachedData) {
-    console.log(`getting ${key} from cache`);
-    return Promise.resolve(cachedData);
-  }
-  console.log(`fetching ${key}...`);
-  return fetch(url, options)
+export const fetchStory = storyId => {
+  return fetch(itemUrl(storyId))
     .then(response => {
       if (!response.ok) {
         throw new Error("Sorry! Fetching error...");
@@ -35,17 +19,59 @@ const cachedFetch = (url, options = {}) => {
       response
         .clone()
         .text()
-        .then(dataStr => {
-          console.log(`storring ${key} to storage`);
-          setData(key, dataStr);
-        });
+        .then(dataStr => storeData(storyId, dataStr));
       return response.json();
     })
     .catch(err => {
       console.log(err);
+      return null;
     });
 };
 
-export const getNewStories = () => cachedFetch(newStoriesUrl());
+export const fetchUser = userId => {
+  return fetch(userUrl(userId))
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Sorry! Fetching error...");
+      }
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
+};
 
-export const getItem = itemId => cachedFetch(itemUrl(itemId));
+export const fetchStories = (type = "new") => {
+  let url;
+  switch (type) {
+    case "top":
+      url = topStoriesUrl();
+      break;
+    case "best":
+      url = bestStoriesUrl();
+      break;
+    case "ask":
+      url = askStoriesUrl();
+      break;
+    case "job":
+      url = jobStoriesUrl();
+      break;
+    case "show":
+      url = showStoriesUrl();
+      break;
+    default:
+      url = newStoriesUrl();
+  }
+  return fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Sorry! Fetching error...");
+      }
+      return response.json();
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
+};

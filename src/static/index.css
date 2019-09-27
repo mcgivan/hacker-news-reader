@@ -1,0 +1,146 @@
+@import './skeleton.css';
+@keyframes placeHolderShimmer{
+  0%{
+      background-position: -468px 0
+  }
+  100%{
+      background-position: 468px 0
+  }
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #eaeaea;
+}
+.loading {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: currentColor;
+  background: linear-gradient(to right, currentColor 8%, #F0F0F0 18%, currentColor 33%);
+  background-size: 800px 104px;
+  height: 96px;
+  position: relative;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #087ca0;
+}
+.top-menu {
+  display: flex;
+  list-style: none;
+}
+.top-menu-link {
+  flex-grow: 1;
+  text-align: center;
+}
+.top-menu-link a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+}
+.top-menu-link a.current,
+.top-menu-link a:hover {
+  text-shadow: 0px 10px 5px #0fa0ce;
+}
+.wrapper {
+  padding: 0 10px;
+}
+
+.per-page-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+.per-page-wrapper select {
+  width: 45px;
+  text-align: center;
+  text-align-last: center;
+}
+.pages {
+  text-align: center;
+}
+.pages ul {
+  padding: 0 0 20px 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  white-space: nowrap
+}
+.pages ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.pages ul li a.current {
+  color: #000;
+  cursor: default;
+  text-shadow: 0px 0px 5px #000;
+}
+.pages ul li a:hover:not(.current) {
+  cursor: pointer;
+  color: #000;
+  text-shadow: 0px 0px 5px #000;
+}
+
+.short-story {
+  background: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(0,0,0, 0.2);
+  padding: 10px;
+  margin: 0 0 10px;
+}
+.short-story.preloading {
+  min-height: 80px;
+}
+.story-short-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.story-date {
+  font-size: smaller;
+}
+.story-title.loading {
+  width: 65%;
+  height: 32px;
+  color: #1EAEDB;
+  opacity: 0.3;
+}
+.story-author.loading {
+  height: 16px;
+  width: 100px;
+  opacity: 0.3;
+}
+.story-date.loading {
+  height: 16px;
+  width: 100px;
+  opacity: 0.3;
+}
+.full-story {
+  background: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(0,0,0, 0.2);
+  padding: 10px;
+  margin: 10px 0;;
+}
+.full-story .title {
+  text-align: center;
+}
+.full-story-top {
+  display: flex;
+  justify-content: flex-start;
+}
+.back-button {
+  text-decoration: none;
+}
+.full-story-bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+

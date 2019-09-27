@@ -1,37 +1,17 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
-import Feed from './components/Feed';
-
-const Nav = ({ children }) => (
-  <div className="wrapper">
-    <nav>
-      <ul className="top-menu">
-        <li className="top-menu-link">
-          <Link to="/">Feed</Link>
-        </li>
-        <li className="top-menu-link">
-          <Link to="best">Best Stories</Link>
-        </li>
-        <li className="top-menu-link">
-          <Link to="top">Top Stories</Link>
-        </li>
-      </ul>
-    </nav>
-    {children}
-  </div>
-);
-
-const BestStories = () => <div>Best stories</div>;
-
-const TopStories = () => <div>Top stories</div>;
+import { Router } from "@reach/router";
+import Nav from "./components/Nav";
+import Story from "./components/Story";
+import MainFeed from "./components/MainFeed";
+import UserPage from "./components/UserPage";
 
 function App() {
   return (
     <Router>
       <Nav path="/">
-        <Feed path="/" />
-        <BestStories path="best" />
-        <TopStories path="top" />
+        <MainFeed path="/*" />
+        <Story path="/story/:itemId" />
+        <UserPage path="/user/:userId" />
       </Nav>
     </Router>
   );
