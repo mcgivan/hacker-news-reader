@@ -1,6 +1,7 @@
 import React from "react";
+import './selector.css';
 
-const StoriesQuantityChanger = ({ perPage, handler }) => (
+const StoriesSelector = ({ perPage, handler }) => (
   <div className="per-page-wrapper row">
     <select defaultValue={perPage} onChange={e => handler(+e.target.value)}>
       <option value="5">5</option>
@@ -10,4 +11,4 @@ const StoriesQuantityChanger = ({ perPage, handler }) => (
   </div>
 );
 
-export default React.memo(StoriesQuantityChanger);
+export default React.memo(StoriesSelector);

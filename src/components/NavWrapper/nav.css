@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 0 10px;
+}
+.top-menu {
+  display: flex;
+  list-style: none;
+}
+.top-menu-link {
+  flex-grow: 1;
+  text-align: center;
+}
+.top-menu-link a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+}
+.top-menu-link a.current,
+.top-menu-link a:hover {
+  text-shadow: 0px 10px 5px #0fa0ce;
+}

@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "@reach/router";
-import useStory from "../hooks/useStory";
-import ErrorMessage from "./ErrorMessage";
+import useStory from "../../hooks/useStory";
+import ErrorMessage from "../Error/ErrorMessage";
+import './story.css';
+import StoryCommentsSections from "./StoryCommentsSection";
 
 const getMarkup = data => ({
   __html: data,
@@ -16,6 +18,7 @@ const Story = ({ itemId }) => {
   if (!story) {
     return null;
   }
+  
   return (
     <>
       <div className="full-story-top">
@@ -38,6 +41,7 @@ const Story = ({ itemId }) => {
           </div>
         ) : null}
       </div>
+      <StoryCommentsSections commentsList={story.kids} />
     </>
   );
 };

@@ -1,0 +1,32 @@
+.short-story {
+  background: #fff;
+  box-shadow: 1px 1px 4px 0px rgba(0,0,0, 0.2);
+  padding: 10px;
+  margin: 0 0 10px;
+}
+.short-story.preloading {
+  min-height: 80px;
+}
+.story-short-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.story-date {
+  font-size: smaller;
+}
+.story-title.loading {
+  width: 65%;
+  height: 32px;
+  color: #1EAEDB;
+  opacity: 0.3;
+}
+.story-author.loading {
+  height: 16px;
+  width: 100px;
+  opacity: 0.3;
+}
+.story-date.loading {
+  height: 16px;
+  width: 100px;
+  opacity: 0.3;
+}

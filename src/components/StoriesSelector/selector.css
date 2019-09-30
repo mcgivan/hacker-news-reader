@@ -1,0 +1,10 @@
+.per-page-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+.per-page-wrapper select {
+  width: 45px;
+  text-align: center;
+  text-align-last: center;
+  padding: 0;
+}

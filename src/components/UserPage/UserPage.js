@@ -1,35 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, navigate } from "@reach/router";
-import { fetchUser } from "../utils/api";
-import useStory from "../hooks/useStory";
-import ItemsList from "./ItemsList";
-import ErrorMessage from "./ErrorMessage";
+import { fetchUser } from "../../utils/api";
+import ItemsList from "../ItemsList";
+import ErrorMessage from "../Error/ErrorMessage";
+import UserPublishedStory from './UserPublishedStory';
+import './user.css';
 
 const getMarkup = data => ({
   __html: data,
 });
 
-window.handler = navigate;
-
-const TitleView = ({ id }) => {
-  const [data, fetchingError] = useStory(id);
-
-  if (fetchingError) {
-    return null;
-  }
-
-  if (!data) {
-    return <div className="user-story-title loading"></div>;
-  }
-
-  return (
-    <div className="user-story-title">
-      <Link to={`../../story/${id}`}>{data.title}</Link>
-    </div>
-  );
-};
-
-const ItemsListWithTitleView = ItemsList(TitleView);
+const ItemsListWithUserPublishedStory = ItemsList(UserPublishedStory);
 
 const UserPage = ({ userId }) => {
   const [user, setUser] = useState(null);
@@ -102,7 +82,7 @@ const UserPage = ({ userId }) => {
           dangerouslySetInnerHTML={getMarkup(user.about)}
         />
         <hr />
-        {ItemsListWithTitleView(user.submitted.slice(0, 10))}
+        {ItemsListWithUserPublishedStory(user.submitted.slice(0, 10))}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import './nav.css';
 
 export default function Nav({ children }) {
   const getCurrentClassName = ({ isCurrent, href }) => ({

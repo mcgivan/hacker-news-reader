@@ -3,11 +3,11 @@ import useStories from "../hooks/useStories";
 import usePaginator from "../hooks/usePaginator";
 import useSlisedItems from "../hooks/useSlisedItems";
 import ItemsList from "./ItemsList";
-import ShortStory from "./ShortStory";
-import Pagination from "./Pagination";
-import StoriesQuantityChanger from "./StoriesQuantityChanger";
-import ErrorPage from "./ErrorPage";
-import ErrorMessage from "./ErrorMessage";
+import ShortStory from "./ShortStory/ShortStory";
+import Pagination from "./Pagination/Pagination";
+import StoriesSelector from "./StoriesSelector/StoriesSelector";
+import ErrorPage from "./Error/ErrorPage";
+import ErrorMessage from "./Error/ErrorMessage";
 
 const ItemsListWithShortStories = ItemsList(ShortStory);
 
@@ -61,7 +61,7 @@ const MainFeed = ({ "*": path }) => {
   return (
     <div className="news-feed-wrapper">
       <h1>{getTitle(path)}</h1>
-      <StoriesQuantityChanger perPage={perPage} handler={i => setPerPage(i)} />
+      <StoriesSelector perPage={perPage} handler={i => setPerPage(i)} />
       {ItemsListWithShortStories(itemsOnPage)}
       {items.length && pages.length > 1 ? (
         <Pagination pages={pages} currentPage={page} />

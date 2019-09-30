@@ -1,19 +1,9 @@
 import React from "react";
 import { Link } from "@reach/router";
-import useStory from "../hooks/useStory";
-import ErrorMessage from "./ErrorMessage";
-
-const getDateString = date => {
-  const fullDate = new Date(+date * 1000);
-  const [, month, day, year] = fullDate.toDateString().split(" ");
-  const timeString = fullDate
-    .toLocaleTimeString()
-    .split(":")
-    .slice(0, 2)
-    .join(":");
-
-  return `${month} ${day}, ${year} at ${timeString}`;
-};
+import useStory from "../../hooks/useStory";
+import ErrorMessage from "../Error/ErrorMessage";
+import { getDateString } from "../../utils/utils";
+import './short-story.css';
 
 function ShortStory({ id }) {
   const [data, fetchingError] = useStory(id);

@@ -1,0 +1,26 @@
+.user-info {
+  word-break: break-word;
+}
+
+.user-name-field.loading {
+  width: 65%;
+  height: 40px;
+  opacity: 0.3;
+}
+.user-info.loading {
+  width: 100%;
+  height: 16px;
+  opacity: 0.3;
+  margin-bottom: 8px;
+}
+.user-info.last-line.loading {
+  width: 35%;
+}
+
+.user-story-title.loading {
+  width: 65%;
+  height: 16px;
+  color: #1EAEDB;
+  opacity: 0.3;
+  margin-bottom: 8px;
+}

@@ -34,141 +34,23 @@ a {
 a:hover {
   color: #087ca0;
 }
-.top-menu {
-  display: flex;
-  list-style: none;
-}
-.top-menu-link {
-  flex-grow: 1;
-  text-align: center;
-}
-.top-menu-link a {
-  display: block;
-  padding: 5px 0;
-  text-decoration: none;
-}
-.top-menu-link a.current,
-.top-menu-link a:hover {
-  text-shadow: 0px 10px 5px #0fa0ce;
-}
-.wrapper {
-  padding: 0 10px;
-}
 
-.per-page-wrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-.per-page-wrapper select {
-  width: 45px;
-  text-align: center;
-  text-align-last: center;
-  padding: 0;
-}
-.pages {
-  text-align: center;
-}
-.pages ul {
-  padding: 0 0 20px 0;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-  overflow: hidden;
-  white-space: nowrap
-}
-.pages ul li {
-  display: inline-block;
-  margin: 0 5px;
-}
-.pages ul li .current {
-  color: #000;
-  cursor: default;
-  text-shadow: 0px 0px 5px #000;
-}
-.pages ul li button:hover:not(.current) {
+.scroll-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  background: #fff;
+  opacity: 0;
   cursor: pointer;
-  color: #000;
-  text-shadow: 0px 0px 5px #000;
+  pointer-events: none;
+  transition: opacity 0.5s;
 }
-
-.short-story {
-  background: #fff;
-  box-shadow: 1px 1px 4px 0px rgba(0,0,0, 0.2);
-  padding: 10px;
-  margin: 0 0 10px;
-}
-.short-story.preloading {
-  min-height: 80px;
-}
-.story-short-bottom {
-  display: flex;
-  justify-content: space-between;
-}
-.story-date {
-  font-size: smaller;
-}
-.story-title.loading {
-  width: 65%;
-  height: 32px;
-  color: #1EAEDB;
-  opacity: 0.3;
-}
-.story-author.loading {
-  height: 16px;
-  width: 100px;
-  opacity: 0.3;
-}
-.story-date.loading {
-  height: 16px;
-  width: 100px;
-  opacity: 0.3;
-}
-.full-story {
-  background: #fff;
-  box-shadow: 1px 1px 4px 0px rgba(0,0,0, 0.2);
-  padding: 10px;
-  margin: 10px 0;;
-}
-.full-story .title {
-  text-align: center;
-}
-.full-story-top {
-  display: flex;
-  justify-content: flex-start;
-}
-.back-button {
-  text-decoration: none;
-}
-.full-story-bottom {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.user-info {
-  word-break: break-word;
-}
-
-.user-name-field.loading {
-  width: 65%;
-  height: 40px;
-  opacity: 0.3;
-}
-.user-info.loading {
-  width: 100%;
-  height: 16px;
-  opacity: 0.3;
-  margin-bottom: 8px;
-}
-.user-info.last-line.loading {
-  width: 35%;
-}
-
-.user-story-title.loading {
-  width: 65%;
-  height: 16px;
-  color: #1EAEDB;
-  opacity: 0.3;
-  margin-bottom: 8px;
+.scroll-top.show {
+  opacity: 0.5;
+  pointer-events: all;
 }
 
 .btn-link {
