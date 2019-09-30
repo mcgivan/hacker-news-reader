@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import useStory from "../hooks/useStory";
+import ErrorMessage from "./ErrorMessage";
 
 const getDateString = date => {
   const fullDate = new Date(+date * 1000);
@@ -14,16 +15,16 @@ const getDateString = date => {
   return `${month} ${day}, ${year} at ${timeString}`;
 };
 
-function ShortItem({ id }) {
+function ShortStory({ id }) {
   const [data, fetchingError] = useStory(id);
 
   if (fetchingError) {
-    return <div>Error occured</div>;
+    return <ErrorMessage />;
   }
   if (!data) {
     return (
       <div className="short-story preloading">
-        <h4 className="story-title loading"></h4>
+        <h4 className="story-title loading" aria-hidden="true" ></h4>
         <div className="story-short-bottom">
           <span className="story-author loading"></span>
           <span className="story-date loading"></span>
@@ -46,4 +47,4 @@ function ShortItem({ id }) {
   );
 }
 
-export default React.memo(ShortItem);
+export default React.memo(ShortStory);

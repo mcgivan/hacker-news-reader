@@ -7,7 +7,7 @@ import UserPage from "./components/UserPage";
 
 function App() {
   return (
-    <Router basepath="/hacker-news-reader" >
+    <Router basepath="/hacker-news-reader/" >
       <Nav path="/">
         <MainFeed path="/*" />
         <Story path="story/:itemId" />

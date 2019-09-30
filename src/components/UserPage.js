@@ -3,6 +3,7 @@ import { Link, navigate } from "@reach/router";
 import { fetchUser } from "../utils/api";
 import useStory from "../hooks/useStory";
 import ItemsList from "./ItemsList";
+import ErrorMessage from "./ErrorMessage";
 
 const getMarkup = data => ({
   __html: data,
@@ -18,14 +19,12 @@ const TitleView = ({ id }) => {
   }
 
   if (!data) {
-    return null;
+    return <div className="user-story-title loading"></div>;
   }
 
   return (
-    <div>
-      <Link to={`../../story/${id}`}>
-        {data.title}
-      </Link>
+    <div className="user-story-title">
+      <Link to={`../../story/${id}`}>{data.title}</Link>
     </div>
   );
 };
@@ -37,39 +36,71 @@ const UserPage = ({ userId }) => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (user) {
-      return;
-    }
-
-    fetchUser(userId)
+    let inProgress = true;
+    let controller = new AbortController();
+    fetchUser(userId, { signal: controller.signal })
       .then(data => {
-        if (data) {
-          setUser(data);
-          setError(false);
-        } else {
-          setError(true);
+        if (inProgress) {
+          if (data) {
+            setUser(data);
+            setError(false);
+          } else {
+            setError(true);
+          }
         }
       })
       .catch(e => {
         console.log(e);
-        setError(true);
+        inProgress && setError(true);
       });
+    return () => {
+      inProgress = false;
+      controller.abort();
+    };
   }, [userId]);
 
+  if (error) {
+    return <ErrorMessage />;
+  }
+
   if (!user) {
-    return <div>Fetching user info...</div>;
+    return (
+      <div className="user-wrapper row">
+        <div className="two columns">
+          <button
+            className="btn-link back-button"
+            onClick={() => window.history.back()}
+          >
+            &lArr; Back
+          </button>
+        </div>
+        <div className="ten columns">
+          <h3 className="user-name-field loading" aria-hidden="true"></h3>
+          <div className="user-info loading" />
+          <div className="user-info loading" />
+          <div className="user-info last-line loading" />
+          <hr />
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="user-wrapper row">
       <div className="two columns">
-        <a href="#" onClick={() => window.history.back()}>
+        <button
+          className="btn-link back-button"
+          onClick={() => window.history.back()}
+        >
           &lArr; Back
-        </a>
+        </button>
       </div>
       <div className="ten columns">
-        <h3>{user.id}</h3>
-        <pre dangerouslySetInnerHTML={getMarkup(user.about)} />
+        <h3 className="user-name-field">{user.id}</h3>
+        <div
+          className="user-info"
+          dangerouslySetInnerHTML={getMarkup(user.about)}
+        />
         <hr />
         {ItemsListWithTitleView(user.submitted.slice(0, 10))}
       </div>

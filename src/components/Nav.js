@@ -2,8 +2,13 @@ import React from "react";
 import { Link } from "@reach/router";
 
 export default function Nav({ children }) {
-  const getCurrentClassName = ({ isCurrent }) => ({
-    className: isCurrent ? "current" : "",
+  const getCurrentClassName = ({ isCurrent, href }) => ({
+    className:
+      href === "/hacker-news-reader" && isCurrent
+        ? "current"
+        : isCurrent
+        ? "current"
+        : "",
   });
   return (
     <div className="wrapper container">

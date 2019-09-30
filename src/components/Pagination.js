@@ -3,15 +3,15 @@ import React from "react";
 const Pagination = ({ pages, currentPage }) =>
   pages && pages.length ? (
     <div className="pages row">
-      <ul className="paginator">
+      <ul className="pagination">
         {pages.map(([i, runPage]) => (
           <li key={i}>
-            <a
-              className={i === currentPage + 1 ? "current" : ""}
+            <button
+              className={`btn-link ${i === currentPage + 1 ? "current" : ""}`}
               onClick={i === currentPage + 1 ? () => {} : () => runPage()}
             >
               {i}
-            </a>
+            </button>
           </li>
         ))}
       </ul>

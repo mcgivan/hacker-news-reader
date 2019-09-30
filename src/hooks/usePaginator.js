@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
-const floor = Math.floor;
+const ceil = Math.ceil;
 const getPages = (startPage, lastPage, callback) => {
   let pages = [];
   let minPage = startPage - 2;
   let maxPage = minPage < 0 ? minPage * -1 + startPage + 2 : startPage + 2;
   minPage = minPage < 0 ? 0 : minPage;
+  if(!lastPage) {
+    return pages;
+  }
+  lastPage -= 1;
   if (maxPage >= lastPage) {
     minPage -= maxPage - lastPage;
     maxPage = lastPage;
   }
+  minPage = minPage < 0 ? 0 : minPage;
   for (let i = minPage; i <= maxPage; i++) {
     pages.push([i + 1, () => callback(i)]);
   }
@@ -17,18 +22,25 @@ const getPages = (startPage, lastPage, callback) => {
 const usePaginator = (totalElements, startPage = 0, itemsOnPage = 5) => {
   const [perPage, setPerPage] = useState(itemsOnPage);
   const [page, setPage] = useState(startPage);
-  const [numOfPages, setNumOfPages] = useState(floor(totalElements / perPage));
+  const [numOfPages, setNumOfPages] = useState(ceil(totalElements / perPage));
   const [pages, setPages] = useState(getPages(page, numOfPages, setPage));
 
   useEffect(() => {
-    setNumOfPages(floor(totalElements / perPage));
+    if(!totalElements) {
+      return;
+    }
+    setNumOfPages(ceil(totalElements / perPage));
   }, [totalElements, perPage]);
-
+  
   useEffect(() => {
+    if(!totalElements || !numOfPages) {
+      return;
+    }
     setPages(getPages(page, numOfPages, setPage));
+    document.body.scrollIntoView({behavior: 'smooth'});
   }, [numOfPages, page]);
 
-  return [page, perPage, pages, setPerPage];
+  return [page, perPage, pages, setPerPage, setPage];
 };
 
 export default usePaginator;

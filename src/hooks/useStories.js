@@ -10,7 +10,7 @@ const useStories = (storiesType = "new") => {
     if (requestCall < 3) {
       let inProgress = true;
       const controller = new AbortController();
-      fetchStories(storiesType, controller.signal)
+      fetchStories(storiesType, { signal: controller.signal })
         .then(fetchedData => {
           if (inProgress) {
             if (fetchedData) {
@@ -19,7 +19,8 @@ const useStories = (storiesType = "new") => {
             } else {
               setError(true);
               setTimeout(
-                () => (inProgress && setRequestCall(call => call + 1), 3000),
+                () => inProgress && setRequestCall(call => call + 1),
+                3000
               );
             }
           }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import useStory from "../hooks/useStory";
+import ErrorMessage from "./ErrorMessage";
 
 const getMarkup = data => ({
   __html: data,
@@ -10,7 +11,7 @@ const Story = ({ itemId }) => {
   const [story, err] = useStory(itemId);
 
   if (err) {
-    return <div>Sorry! Error occured</div>;
+    return <ErrorMessage />;
   }
   if (!story) {
     return null;

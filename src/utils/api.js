@@ -28,8 +28,8 @@ export const fetchStory = storyId => {
     });
 };
 
-export const fetchUser = userId => {
-  return fetch(userUrl(userId))
+export const fetchUser = (userId, options = {}) => {
+  return fetch(userUrl(userId), {...options})
     .then(response => {
       if (!response.ok) {
         throw new Error("Sorry! Fetching error...");
@@ -42,7 +42,7 @@ export const fetchUser = userId => {
     });
 };
 
-export const fetchStories = (type = "new") => {
+export const fetchStories = (type = "new", options = {}) => {
   let url;
   switch (type) {
     case "top":
@@ -63,7 +63,7 @@ export const fetchStories = (type = "new") => {
     default:
       url = newStoriesUrl();
   }
-  return fetch(url)
+  return fetch(url, {...options})
     .then(response => {
       if (!response.ok) {
         throw new Error("Sorry! Fetching error...");
