@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAppContext } from "../components/AppContext/AppContext";
 const ceil = Math.ceil;
 const getPages = (startPage, lastPage, callback) => {
   let pages = [];
@@ -19,7 +20,8 @@ const getPages = (startPage, lastPage, callback) => {
   }
   return pages;
 };
-const usePaginator = (totalElements, startPage = 0, itemsOnPage = 5) => {
+const usePaginator = (totalElements, startPage, itemsOnPage) => {
+  const [,dispatch] = useAppContext();
   const [perPage, setPerPage] = useState(itemsOnPage);
   const [page, setPage] = useState(startPage);
   const [numOfPages, setNumOfPages] = useState(ceil(totalElements / perPage));
@@ -29,6 +31,7 @@ const usePaginator = (totalElements, startPage = 0, itemsOnPage = 5) => {
     if(!totalElements) {
       return;
     }
+    dispatch({type: 'SET_PER_PAGE', payload: perPage});
     setNumOfPages(ceil(totalElements / perPage));
   }, [totalElements, perPage]);
   
@@ -36,6 +39,8 @@ const usePaginator = (totalElements, startPage = 0, itemsOnPage = 5) => {
     if(!totalElements || !numOfPages) {
       return;
     }
+    dispatch({type:'SET_PREV_PAGE', payload: page});
+
     setPages(getPages(page, numOfPages, setPage));
     document.body.scrollIntoView({behavior: 'smooth'});
   }, [numOfPages, page]);

@@ -8,6 +8,7 @@ import Pagination from "./Pagination/Pagination";
 import StoriesSelector from "./StoriesSelector/StoriesSelector";
 import ErrorPage from "./Error/ErrorPage";
 import ErrorMessage from "./Error/ErrorMessage";
+import { useAppContext } from "./AppContext/AppContext";
 
 const ItemsListWithShortStories = ItemsList(ShortStory);
 
@@ -26,14 +27,20 @@ const getTitle = route => {
 const allowedUrls = ["", "best", "top", "ask", "job", "show"];
 
 const MainFeed = ({ "*": path }) => {
+  const [state, dispatch] = useAppContext();
   const [items, error] = useStories(path);
   const [page, perPage, pages, setPerPage, setPage] = usePaginator(
     items.length,
-  );
+    state.prevPage,
+    state.perPage
+   );
   const itemsOnPage = useSlisedItems(items, page, perPage);
 
   useEffect(() => {
-    setPage(0);
+    if(state.prevUrl !== path) {
+      setPage(0);
+    }
+    dispatch({'type':'SET_PREV_URL', 'payload': path});
   }, [path]);
 
   useEffect(() => {

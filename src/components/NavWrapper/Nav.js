@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
-import './nav.css';
+import "./nav.css";
+import { BASEPATH } from "../../utils/constants";
 
 export default function Nav({ children }) {
   const getCurrentClassName = ({ isCurrent, href }) => ({
@@ -16,32 +17,32 @@ export default function Nav({ children }) {
       <nav className="nav-wrapper">
         <ul className="top-menu">
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/`}>
               New Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./best">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/best`}>
               Best Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./top">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/top`}>
               Top Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./ask">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/ask`}>
               Ask Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./job">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/job`}>
               Job Stories
             </Link>
           </li>
           <li className="top-menu-link">
-            <Link getProps={getCurrentClassName} to="./show">
+            <Link getProps={getCurrentClassName} to={`${BASEPATH}/show`}>
               Show Stories
             </Link>
           </li>

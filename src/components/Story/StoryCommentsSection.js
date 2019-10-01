@@ -23,8 +23,10 @@ export default function StoryCommentsSections({ commentsList }) {
     <div className="full-story-comments">
       <h5>Comments:</h5>
       {ItemsListWithComment(itemsToShow)}
-      {commentsList && commentsList.length > 5 ? (
-        <button onClick={() => setLoadRest(true)}>Load more ({commentsList.length - 5})</button>
+      {commentsList && commentsList.length > 5 && !loadRest ? (
+        <div className="" style={{textAlign: 'center'}}>
+          <button onClick={() => setLoadRest(true)}>Load more ({commentsList.length - 5})</button>
+        </div>
       ) : null}
     </div>
   ) : null;

@@ -4,6 +4,8 @@ import Nav from "./components/NavWrapper/Nav";
 import Story from "./components/Story/Story";
 import MainFeed from "./components/MainFeed";
 import UserPage from "./components/UserPage/UserPage";
+import { BASEPATH } from "./utils/constants";
+import { AppContextProvider } from "./components/AppContext/AppContext";
 
 const scrollHandler = (button) => () => {
   if(window.scrollY > window.innerHeight*2){
@@ -30,16 +32,19 @@ function App() {
     return ()=>window.removeEventListener('scroll', handler);
 
   }, [scrollToTopLink]);
+
   return (
     <>
-      <Router basepath="/hacker-news-reader" >
-        <Nav path="/">
-          <MainFeed path="/*" />
-          <Story path="story/:itemId" />
-          <UserPage path="user/:userId" />
-        </Nav>
-      </Router>
-      <a ref={scrollToTopLink} href="" className="scroll-top" onClick={(e)=>scrollTop(e)} >Top</a>
+      <AppContextProvider>
+        <Router basepath={`${BASEPATH}`} >
+          <Nav path="/" default>
+            <MainFeed path="/*" />
+            <Story path="story/:itemId" />
+            <UserPage path="user/:userId" />
+          </Nav>
+        </Router>
+        <a ref={scrollToTopLink} href="" className="scroll-top" onClick={(e)=>scrollTop(e)} >Top</a>
+      </AppContextProvider>
     </>
   );
 }
